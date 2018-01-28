@@ -76,8 +76,12 @@ static void parseXml(mxml_node_t* rootNode, TrackData* trackData)
 					const char* rows_per_beat = mxmlElementGetAttr(node, "rowsPerBeat");
 					const char* hlrow_step = mxmlElementGetAttr(node, "highlightRowStep");
 					const char* beats_per_min = mxmlElementGetAttr(node, "beatsPerMin");
-					const char* music_filename = mxmlElementGetAttr(node, "musicFilename");
+					const char* music_filename_from_xml = mxmlElementGetAttr(node, "musicFilename");
 
+					if (music_filename_from_xml != NULL)
+					{
+						strcpy(music_filename, music_filename_from_xml);
+					}
 					if (start_row)
 						trackData->startRow = atoi(start_row);
 
@@ -93,8 +97,17 @@ static void parseXml(mxml_node_t* rootNode, TrackData* trackData)
 					if (beats_per_min)
 						trackData->bpm = atoi(beats_per_min);
 
-					if (music_filename)
-                        trackData->musicData.filename = (text_t*)strdup(music_filename);
+					if (music_filename) {
+						// convert char* to wchar_t*/text_t* https://stackoverflow.com/a/17913642
+						int size = strlen(music_filename) + 1;
+						trackData->musicData.filename = (wchar_t *)malloc(size * sizeof *trackData->musicData.filename);
+						
+						int j = 0;
+						for (int i = 0; i < size; i++)
+						{
+							trackData->musicData.filename[j++] = music_filename[i];
+						}
+					}
 				}
 
 				if (!strcmp("track", element_name))
@@ -424,8 +437,11 @@ int LoadSave_saveRocketXML(const text_t* path, TrackData* trackData)
 	setElementInt(tracks, "rowsPerBeat", "%d", trackData->rowsPerBeat);
 	setElementInt(tracks, "beatsPerMin", "%d", trackData->bpm);
 
-	if (trackData->musicData.filename)
-		mxmlElementSetAttr(tracks, "musicFilename", (const char*)trackData->musicData.filename);
+	if (music_filename) 
+	{
+		mxmlElementSetAttr(tracks, "musicFilename", music_filename);
+		//mxmlElementSetAttr(tracks, "musicFilename", (const char*)trackData->musicData.filename);
+	}
 
 	for (p = 0; p < trackData->num_syncTracks; ++p)
 	{
