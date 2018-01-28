@@ -80,6 +80,16 @@ Note that you will need to setup your paths/variables so cl is included and can 
 In that case run the "vsvars32.bat" included with Visual Studio from a command prompt and start Visual Studio from there.
 
 If you want to build from command line that works just as fine as well (just set vsvars32 (as seen above) and run "tundra win32-msvc-debug" for the debug build.
+```
+//make sure submodules are there
+rocket-trbl-fork>git submodule update --init --recursive
+//set vars
+rocket-trbl-fork>"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat"
+//generate solution
+rocket-trbl-fork>"scripts\win32_gen_vs_solution.cmd"
+```
+
+build solution, and copy bass.dll from ```external\bass\win32``` to ```t2-output\win32-msvc-debug-default```
 
 Linux
 -----
