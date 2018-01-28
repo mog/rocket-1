@@ -177,8 +177,9 @@ int Music_decode(text_t* path, MusicData* data)
 
     if (thrd_busy == mtx_trylock(&s_mutex))
     {
-	    Dialog_showError(TEXT("Decoding of stream already in-progress. Re-open after it's been completed."));
-	    return 1;
+		mtx_unlock(&s_mutex);
+	    //Dialog_showError(TEXT("Decoding of stream already in-progress. Re-open after it's been completed."));
+	    //return 1;
     }
 
     // now this will break if we already have a thread running.
@@ -196,7 +197,8 @@ int Music_decode(text_t* path, MusicData* data)
 
 	if (!chan)
 	{
-	    Dialog_showError(TEXT("Unable to open stream for decode. No music data will be availible."));
+	    //Dialog_showError(TEXT("Unable to open stream for decode. No music data will be available."));
+		BASS_StreamFree(chan);
 	    return 0;
 	}
 
