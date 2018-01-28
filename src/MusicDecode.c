@@ -206,7 +206,7 @@ int Music_decode(text_t* path, MusicData* data)
 
     if (len == -1)
     {
-	    Dialog_showError(TEXT("Stream has no length. No music data will be availible."));
+	    Dialog_showError(TEXT("Stream has no length. No music data will be available."));
         BASS_StreamFree(chan);
         return 0;
     }
