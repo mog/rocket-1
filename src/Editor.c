@@ -1088,22 +1088,20 @@ static void onOpen()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+int openMusic(wchar_t* path) {
+	return (Dialog_open(path));
+}
+
 static void onLoadMusic()
 {
-	text_t path[2048];
-
-	printf("onLoadMusic\n");
-
-    if (!s_editorData.canDecodeMusic)
-    {
-		Dialog_showError(TEXT("Unable to load music as BASS failed to init."));
+	wchar_t path[2048];
+	
+	if (!openMusic(path))
+	{
 		return;
-    }
+	}
 
-	if (!Dialog_open(path))
-		return;
-
-    decodeMusic(path, 0);
+	decodeMusic(path, 0);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
