@@ -85,7 +85,7 @@ void TrackView_init()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-static void printRowNumbers(int x, int y, int rowCount, int rowOffset, int rowSpacing, int maskBpm, int endY)
+static void printRowNumbers(int x, int y, int rowCount, int rowOffset, int rowSpacing, int maskBpm, int endY, int bpm)
 {
 	int i;
 
@@ -97,11 +97,17 @@ static void printRowNumbers(int x, int y, int rowCount, int rowOffset, int rowSp
 		rowOffset = 0;
 	}
 
+	double rowsPerSecond = bpm * maskBpm / 60.0; //maskBpm == rowsPerBeat
+	
 	for (i = 0; i < rowCount; ++i)
 	{
+		double rowInSeconds = rowOffset / rowsPerSecond;
+		int minutes = (int)(rowInSeconds / 60);// (lon - degrees) * 60;
+		double seconds = rowInSeconds - minutes * 60;// floor(lon);
+
 		char rowText[16];
-		memset(rowText, 0, sizeof(rowText));
-		sprintf(rowText, "%05d", rowOffset);
+		sprintf(rowText, "%02d:%05.2f", minutes, seconds);
+		printf(rowText);
 
 		if (rowOffset % maskBpm)
 			Emgui_drawText(rowText, x, y, Emgui_color32(0xa0, 0xa0, 0xa0, 0xff));
@@ -719,12 +725,13 @@ bool TrackView_render(TrackViewInfo* viewInfo, TrackData* trackData)
 
 	x_pos = TrackView_getStartOffset() + -viewInfo->startPixel;
 
-	printRowNumbers(2, adjust_top_size, end_row, y_pos_row, font_size, trackData->rowsPerBeat, y_end_border);
-
-	Emgui_drawBorder(border_color, border_color, 48, info.startY - font_size * 4, viewInfo->windowSizeX - 80, (info.endSizeY - info.startY) + 40);
+	printRowNumbers(2, adjust_top_size, end_row, y_pos_row, font_size, trackData->rowsPerBeat, y_end_border, trackData->bpm);
+	int paddingLeft = 70;//48 -- make room for timestamp
+	int alternatePadding = 48; //40
+	Emgui_drawBorder(border_color, border_color, paddingLeft, info.startY - font_size * 4, viewInfo->windowSizeX - (alternatePadding*2), (info.endSizeY - info.startY) + 40);
 
 	Emgui_setLayer(1);
-	Emgui_setScissor(48, 0, viewInfo->windowSizeX - 80, viewInfo->windowSizeY);
+	Emgui_setScissor(paddingLeft, 0, viewInfo->windowSizeX - (alternatePadding*2), viewInfo->windowSizeY);
 	Emgui_setFont(viewInfo->smallFontId);
 
 
@@ -812,7 +819,7 @@ int TrackView_getWidth(TrackViewInfo* viewInfo, struct TrackData* trackData)
 
 int TrackView_getStartOffset()
 {
-	return 48;
+	return 70;// 48;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
