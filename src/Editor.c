@@ -36,7 +36,8 @@ enum {
 	GET_TRACK = 2,
 	SET_ROW = 3,
 	PAUSE = 4,
-	SAVE_TRACKS = 5
+	SAVE_TRACKS = 5,
+	COMMAND = 6
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1950,6 +1951,21 @@ void Editor_menuEvent(int menuItem)
 		case EDITOR_MENU_TOGGLE_LOOPMARK : onToggleLoopmark(); break;
 		case EDITOR_MENU_CLEAR_LOOPMARKS : onClearLoopmarks(); break;
 		case EDITOR_MENU_TAB : onTab(); break;
+
+
+		//action
+		case EDITOR_MENU_ACTION1 : RemoteConnection_sendActionCommand(1); break;
+		case EDITOR_MENU_ACTION2 : RemoteConnection_sendActionCommand(2); break;
+		case EDITOR_MENU_ACTION3 : RemoteConnection_sendActionCommand(3); break;
+		case EDITOR_MENU_ACTION4 : RemoteConnection_sendActionCommand(4); break;
+		case EDITOR_MENU_ACTION5 : RemoteConnection_sendActionCommand(5); break;
+		case EDITOR_MENU_ACTION6 : RemoteConnection_sendActionCommand(6); break;
+		case EDITOR_MENU_ACTION7 : RemoteConnection_sendActionCommand(7); break;
+		case EDITOR_MENU_ACTION8 : RemoteConnection_sendActionCommand(8); break;
+		case EDITOR_MENU_ACTION9 : RemoteConnection_sendActionCommand(9); break;
+		case EDITOR_MENU_ACTION10: RemoteConnection_sendActionCommand(10); break;
+		case EDITOR_MENU_ACTION11: RemoteConnection_sendActionCommand(11); break;
+		case EDITOR_MENU_ACTION12: RemoteConnection_sendActionCommand(12); break;
 	}
 
 	Editor_update();

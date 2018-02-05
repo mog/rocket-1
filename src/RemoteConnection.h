@@ -27,6 +27,7 @@ void RemoteConnection_sendDeleteKeyCommand(const char* trackName, int row);
 void RemoteConnection_sendSetRowCommand(int row);
 void RemoteConnection_sendPauseCommand(bool pause);
 void RemoteConnection_sendSaveCommand();
+void RemoteConnection_sendActionCommand();
 
 void RemoteConnection_sendKeyFrames(const char* name, struct sync_track* track);
 void RemoteConnection_mapTrackName(const char* name);

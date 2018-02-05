@@ -78,7 +78,8 @@ enum {
 	GET_TRACK = 2,
 	SET_ROW = 3,
 	PAUSE = 4,
-	SAVE_TRACKS = 5
+	SAVE_TRACKS = 5,
+	ACTION = 6
 };
 
 static inline int socket_poll(SOCKET socket)
@@ -460,8 +461,21 @@ void RemoteConnection_sendSaveCommand()
 
 	if (!RemoteConnection_connected())
 		return;
-
+	
 	RemoteConnection_send((char *)&cmd, 1, 0);
+}
+
+void RemoteConnection_sendActionCommand(int actionId)
+{
+	unsigned char cmd = ACTION;
+
+	if (!RemoteConnection_connected())
+		return;
+
+	actionId = htonl(actionId);
+	printf("sending action %d\n", actionId);
+	RemoteConnection_send((char *)&cmd, 1, 0);
+	RemoteConnection_send((char *)&actionId, sizeof(int), 0);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

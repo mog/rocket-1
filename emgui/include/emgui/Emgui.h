@@ -32,6 +32,19 @@ enum EmguiSpecialKey
 	EMGUI_KEY_BACKSPACE,
 	EMGUI_KEY_ENTER,
 	EMGUI_KEY_SPACE,
+
+	EMGUI_KEY_F1,
+	EMGUI_KEY_F2,
+	EMGUI_KEY_F3,
+	EMGUI_KEY_F4,
+	EMGUI_KEY_F5,
+	EMGUI_KEY_F6,
+	EMGUI_KEY_F7,
+	EMGUI_KEY_F8,
+	EMGUI_KEY_F9,
+	EMGUI_KEY_F10,
+	EMGUI_KEY_F11,
+	EMGUI_KEY_F12,
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

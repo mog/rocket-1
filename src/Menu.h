@@ -99,6 +99,20 @@ enum
 	EDITOR_MENU_CLEAR_LOOPMARKS,
 
 	EDITOR_MENU_TAB,
+
+	//action commands send through rocket to demo
+	EDITOR_MENU_ACTION1,
+	EDITOR_MENU_ACTION2,
+	EDITOR_MENU_ACTION3,
+	EDITOR_MENU_ACTION4,
+	EDITOR_MENU_ACTION5,
+	EDITOR_MENU_ACTION6,
+	EDITOR_MENU_ACTION7,
+	EDITOR_MENU_ACTION8,
+	EDITOR_MENU_ACTION9,
+	EDITOR_MENU_ACTION10,
+	EDITOR_MENU_ACTION11,
+	EDITOR_MENU_ACTION12
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -121,3 +135,4 @@ typedef struct MenuDescriptor
 extern MenuDescriptor g_fileMenu[];
 extern MenuDescriptor g_editMenu[];
 extern MenuDescriptor g_viewMenu[];
+extern MenuDescriptor g_actionMenu[];

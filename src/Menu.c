@@ -99,3 +99,20 @@ MenuDescriptor g_viewMenu[] =
 	{ _T("Jump row,start/end & edit"), 	EDITOR_MENU_TAB,				EMGUI_KEY_TAB, 			0, 0 },
 	{ 0 },
 };
+
+MenuDescriptor g_actionMenu[] =
+{
+	{ _T("Send action 1"), 		EDITOR_MENU_ACTION1,		EMGUI_KEY_F1, 	0, 0 },
+	{ _T("Send action 2"), 		EDITOR_MENU_ACTION2,		EMGUI_KEY_F2, 	0, 0 },
+	{ _T("Send action 3"), 		EDITOR_MENU_ACTION3,		EMGUI_KEY_F3, 	0, 0 },
+	{ _T("Send action 4"), 		EDITOR_MENU_ACTION4,		EMGUI_KEY_F4, 	0, 0 },
+	{ _T("Send action 5"), 		EDITOR_MENU_ACTION5,		EMGUI_KEY_F5, 	0, 0 },
+	{ _T("Send action 6"), 		EDITOR_MENU_ACTION6,		EMGUI_KEY_F6, 	0, 0 },
+	{ _T("Send action 7"), 		EDITOR_MENU_ACTION7,		EMGUI_KEY_F7, 	0, 0 },
+	{ _T("Send action 8"), 		EDITOR_MENU_ACTION8,		EMGUI_KEY_F8, 	0, 0 },
+	{ _T("Send action 9"), 		EDITOR_MENU_ACTION9,		EMGUI_KEY_F9, 	0, 0 },
+	{ _T("Send action 10"), 	EDITOR_MENU_ACTION10,		EMGUI_KEY_F10, 	0, 0 },
+	{ _T("Send action 11"), 	EDITOR_MENU_ACTION11,		EMGUI_KEY_F11, 	0, 0 },
+	{ _T("Send action 12"), 	EDITOR_MENU_ACTION12,		EMGUI_KEY_F12, 	0, 0 },
+	{ 0 },
+};

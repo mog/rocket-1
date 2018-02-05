@@ -221,6 +221,19 @@ static void formatName(wchar_t* outName, int keyMod, int key, const wchar_t* nam
 			case EMGUI_KEY_SPACE: wcscpy_s(keyName, sizeof_array(keyName), L"Space"); break;
 			case EMGUI_KEY_PAGE_UP: wcscpy_s(keyName, sizeof_array(keyName), L"Page Up"); break;
 			case EMGUI_KEY_PAGE_DOWN: wcscpy_s(keyName, sizeof_array(keyName), L"Page Down"); break;
+
+			case EMGUI_KEY_F1: wcscpy_s(keyName, sizeof_array(keyName), L"F1"); break;
+			case EMGUI_KEY_F2: wcscpy_s(keyName, sizeof_array(keyName), L"F2"); break;
+			case EMGUI_KEY_F3: wcscpy_s(keyName, sizeof_array(keyName), L"F3"); break;
+			case EMGUI_KEY_F4: wcscpy_s(keyName, sizeof_array(keyName), L"F4"); break;
+			case EMGUI_KEY_F5: wcscpy_s(keyName, sizeof_array(keyName), L"F5"); break;
+			case EMGUI_KEY_F6: wcscpy_s(keyName, sizeof_array(keyName), L"F6"); break;
+			case EMGUI_KEY_F7: wcscpy_s(keyName, sizeof_array(keyName), L"F7"); break;
+			case EMGUI_KEY_F8: wcscpy_s(keyName, sizeof_array(keyName), L"F8"); break;
+			case EMGUI_KEY_F9: wcscpy_s(keyName, sizeof_array(keyName), L"F9"); break;
+			case EMGUI_KEY_F10: wcscpy_s(keyName, sizeof_array(keyName), L"F10"); break;
+			case EMGUI_KEY_F11: wcscpy_s(keyName, sizeof_array(keyName), L"F11"); break;
+			case EMGUI_KEY_F12: wcscpy_s(keyName, sizeof_array(keyName), L"F12"); break;
 		}
 	}
 
@@ -272,6 +285,19 @@ static void addAccelarator(const MenuDescriptor* desc)
 			case EMGUI_KEY_SPACE: accel->key = VK_SPACE; break;
 			case EMGUI_KEY_PAGE_DOWN: accel->key = VK_NEXT; break;
 			case EMGUI_KEY_PAGE_UP: accel->key = VK_PRIOR; break;
+
+			case EMGUI_KEY_F1: accel->key = VK_F1; break;
+			case EMGUI_KEY_F2: accel->key = VK_F2; break;
+			case EMGUI_KEY_F3: accel->key = VK_F3; break;
+			case EMGUI_KEY_F4: accel->key = VK_F4; break;
+			case EMGUI_KEY_F5: accel->key = VK_F5; break;
+			case EMGUI_KEY_F6: accel->key = VK_F6; break;
+			case EMGUI_KEY_F7: accel->key = VK_F7; break;
+			case EMGUI_KEY_F8: accel->key = VK_F8; break;
+			case EMGUI_KEY_F9: accel->key = VK_F9; break;
+			case EMGUI_KEY_F10: accel->key = VK_F10; break;
+			case EMGUI_KEY_F11: accel->key = VK_F11; break;
+			case EMGUI_KEY_F12: accel->key = VK_F12; break;
 		}
 	}
 
@@ -324,6 +350,7 @@ void Window_buildMenu()
     buildSubMenu(mainMenu, g_fileMenu, L"&File");
     buildSubMenu(mainMenu, g_editMenu, L"&Edit");
     buildSubMenu(mainMenu, g_viewMenu, L"&View");
+	buildSubMenu(mainMenu, g_actionMenu, L"&Action");
 	SetMenu(s_window, mainMenu);
 
 	// Add accelerators for the recents files 
@@ -569,6 +596,18 @@ LRESULT CALLBACK WndProc(HWND window, UINT message, WPARAM wParam, LPARAM lParam
 				case EDITOR_MENU_CLEAR_BOOKMARKS:
 				case EDITOR_MENU_TOGGLE_LOOPMARK:
 				case EDITOR_MENU_CLEAR_LOOPMARKS:
+				case EDITOR_MENU_ACTION1:
+				case EDITOR_MENU_ACTION2:
+				case EDITOR_MENU_ACTION3:
+				case EDITOR_MENU_ACTION4:
+				case EDITOR_MENU_ACTION5:
+				case EDITOR_MENU_ACTION6:
+				case EDITOR_MENU_ACTION7:
+				case EDITOR_MENU_ACTION8:
+				case EDITOR_MENU_ACTION9:
+				case EDITOR_MENU_ACTION10:
+				case EDITOR_MENU_ACTION11:
+				case EDITOR_MENU_ACTION12:
 				{
 					Editor_menuEvent(LOWORD(wParam));
 					break;
